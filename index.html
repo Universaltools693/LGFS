@@ -8,17 +8,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; background: #1e3a8a; font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
+    body { margin: 0; background: #ffffff; font-family: 'Montserrat', sans-serif; color: #000000; overflow-x: hidden; }
     .container { max-width: 100%; padding: 20px; box-sizing: border-box; }
     .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0a1a3d; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
     .greeting-text { font-size: 2rem; font-weight: 700; color: #ffffff; text-shadow: 3px 3px 6px #000; animation: pulse 2s infinite, slideIn 1s ease-out; }
-    h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 15px 0; color: #fff; border-bottom: 2px solid #2b6cb0; padding-bottom: 10px; }
+    h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 15px 0; color: #000000; border-bottom: 2px solid #2b6cb0; padding-bottom: 10px; }
     .input-group { margin: 15px 0; position: relative; }
-    .input-group label { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #d1e7ff; }
-    .input-group input, .input-group select { width: 100%; padding: 10px 12px 10px 40px; font-size: 1rem; border: none; border-radius: 8px; background: #2b6cb0; color: #fff; box-sizing: border-box; transition: background 0.3s; }
+    .input-group label { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #000000; }
+    .input-group input, .input-group select { width: 100%; padding: 10px 12px 10px 40px; font-size: 1rem; border: none; border-radius: 8px; background: #2b6cb0; color: #ffffff; box-sizing: border-box; transition: background 0.3s; }
     .input-group input:focus, .input-group select:focus { outline: none; background: #3b82f6; }
-    .input-group i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #d1e7ff; font-size: 1.2rem; }
-    button { background: #2b6cb0; color: #fff; font-size: 1rem; font-weight: 700; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s, transform 0.2s; position: relative; overflow: hidden; }
+    .input-group i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #000000; font-size: 1.2rem; }
+    button { background: #2b6cb0; color: #ffffff; font-size: 1rem; font-weight: 700; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s, transform 0.2s; position: relative; overflow: hidden; }
     button:hover { background: #3b82f6; transform: scale(1.05); }
     button::after { content: '➔'; position: absolute; right: 10px; opacity: 0; transition: opacity 0.3s; }
     button:hover::after { opacity: 1; }
@@ -27,10 +27,10 @@
     .download-button { background: #2b6cb0; padding: 10px 20px; border-radius: 8px; }
     .download-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #2b6cb0; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
     .download-container:hover .download-dropdown { display: block; }
-    .download-dropdown button { width: 100%; text-align: left; padding: 10px 20px; border-radius: 0; background: #2b6cb0; }
+    .download-dropdown button { width: 100%; text-align: left; padding: 10px 20px; border-radius: 0; background: #2b6cb0; color: #ffffff; }
     .download-dropdown button:hover { background: #3b82f6; }
     table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #2b6cb0; border-radius: 10px; overflow: hidden; }
-    th, td { border: 2px solid #fff; padding: 12px; text-align: left; }
+    th, td { border: 2px solid #ffffff; padding: 12px; text-align: left; color: #ffffff; }
     th { background: #1e3a8a; font-size: 1.1rem; }
     td { font-size: 0.95rem; }
     @media (min-width: 768px) { .greeting-text { font-size: 2.5rem; } h2 { font-size: 1.8rem; } .input-group input, .input-group select { font-size: 1.2rem; } button { font-size: 1.2rem; padding: 15px 30px; } .container { padding: 30px; } }
@@ -105,10 +105,10 @@
           <div class="input-group"><label><i class="fas fa-globe"></i> Country:</label><input type="text" value="India" disabled></div>
           <div class="input-group"><label><i class="fas fa-map-marked-alt"></i> State:</label><input type="text" value="Madhya Pradesh" disabled></div>
           <div class="input-group"><label><i class="fas fa-city"></i> City:</label><select onchange="selectedCity=this.value; selectedArea=''; updateUI()"><option value="">Select City</option>${geoData.cities.map(c => `<option value="${c.name}">${c.name}</option>`).join('')}</select></div>
-          <div class="input-group"><label><i class="fas fa-map-pin"></i> Area:</label><select onchange="selectedArea=this.value" disabled=${!selectedCity}><option value="">Select Area</option>${selectedCity ? geoData.cities.find(c => c.name === selectedCity).areas.map(a => `<option value="${a.name}">${a.name}</option>`).join('') : ''}</select></div>
+          <div class="input-group"><label><i class="fas fa-map-pin"></i> Area:</label><select onchange="selectedArea=this.value" ${selectedCity ? '' : 'disabled'}><option value="">Select Area</option>${selectedCity ? geoData.cities.find(c => c.name === selectedCity).areas.map(a => `<option value="${a.name}">${a.name}</option>`).join('') : ''}</select></div>
           <div class="input-group"><label><i class="fas fa-layer-group"></i> Type:</label><select onchange="selectedType=this.value"><option value="">Select Type</option><option value="Urban">Urban</option><option value="Rural">Rural</option></select></div>
           <div class="input-group"><label><i class="fas fa-truck"></i> Category:</label><select onchange="selectedCategory=this.value; selectedModel=''; updateUI()"><option value="">Select Category</option><option value="haulage">Haulage Trucks</option><option value="tippers">Tippers</option><option value="transitMixers">Transit Mixers</option></select></div>
-          <div class="input-group"><label><i class="fas fa-cog"></i> Model:</label><select onchange="selectedModel=this.value" disabled=${!selectedCategory}><option value="">Select Model</option>${selectedCategory ? eicherModels[selectedCategory].map(m => `<option value="${m.name}">${m.name}</option>`).join('') : ''}</select></div>
+          <div class="input-group"><label><i class="fas fa-cog"></i> Model:</label><select onchange="selectedModel=this.value" ${selectedCategory ? '' : 'disabled'}><option value="">Select Model</option>${selectedCategory ? eicherModels[selectedCategory].map(m => `<option value="${m.name}">${m.name}</option>`).join('') : ''}</select></div>
           <button onclick="handleGenerateLeads()">Generate Leads <i class="fas fa-check"></i></button>
           <div><h3>📋 Leads</h3>${filteredLeads.length === 0 ? '<p><i class="fas fa-info-circle"></i> No leads found. Please select valid options.</p>' : `<table><thead><tr><th>📌 Business Name</th><th>📞 Contact Number</th><th>🏠 Address</th><th>📍 Area</th><th>🏭 Business Type</th><th>🚚 Application</th><th>🌐 Source</th></tr></thead><tbody>${filteredLeads.map(l => `<tr><td>${l.businessName}</td><td>${l.contactNumber}</td><td>${l.address}</td><td>${l.area}</td><td>${l.businessType}</td><td>${l.application}</td><td>${l.source}</td></tr>`).join('')}</tbody></table>`}</div>
         `;
