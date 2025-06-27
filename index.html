@@ -134,16 +134,19 @@
             else if (index === 3) authKey = e.target.value;
             updateUI();
           }, 300), { passive: true });
+          input.addEventListener('focus', () => input.setSelectionRange(input.value.length, input.value.length), { passive: true }); // Stabilize cursor
         });
       }
 
       function handleEnter() {
-        if (authName !== 'Vikas Tiwari' || authNumber !== '7974123411' || authKey !== SECRET_KEY) {
-          error = 'Invalid Credentials';
-        } else {
+        console.log('Checking:', authName, authNumber, authKey); // Debug
+        if (authName.trim() === 'Vikas Tiwari' && authNumber.trim() === '7974123411' && authKey.trim() === SECRET_KEY) {
           isAuthenticated = true;
-          userName = userName || 'User';
-          renderApp();
+          userName = userName.trim() || 'User';
+          app.innerHTML = ''; // Clear current content
+          renderApp(); // Render main app
+        } else {
+          error = 'Invalid Credentials';
         }
         updateUI();
       }
