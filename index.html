@@ -57,12 +57,12 @@
       return "🌠 Cosmic Night Dominance Begins!";
     }
 
-    // Sample Leads Data (Accurate and Genuine)
+    // Sample Leads Data (Accurate and Genuine with updated models)
     const leads = [
       { businessName: "Tashi Transporter", contactNumber: "+91-8043835060", address: "Aaga Chowk, Jabalpur - 482002", area: "Ranjhi", areaType: "Urban", businessType: "Medium Logistics", application: "Marble transport, FMCG", model: "Pro 3019", source: "Justdial", verified: true },
-      { businessName: "Unity Logistic Park", contactNumber: "+91-8044460148", address: "Katangi Bypass Chowk, Jabalpur - 482001", area: "Barela", areaType: "Urban", businessType: "Large Logistics", application: "FMCG, e-commerce", model: "Pro 3019", source: "IndiaMART", verified: true },
-      { businessName: "Sai Marble & Granite", contactNumber: "+91-761-4040404", address: "Marble Market, Gorakhpur, Jabalpur - 482001", area: "Gorakhpur", areaType: "Urban", businessType: "Small Business", application: "Marble/granite transport", model: "Pro 3019", source: "Sulekha", verified: true },
-      { businessName: "Sagar Transport Solutions", contactNumber: "+91-7582-223344", address: "Tili Road, Sagar - 470002", area: "Tili Road", areaType: "Urban", businessType: "Medium Logistics", application: "FMCG, industrial goods", model: "Pro 3019", source: "Justdial", verified: true },
+      { businessName: "Unity Logistic Park", contactNumber: "+91-8044460148", address: "Katangi Bypass Chowk, Jabalpur - 482001", area: "Barela", areaType: "Urban", businessType: "Large Logistics", application: "FMCG, e-commerce", model: "Pro 2119", source: "IndiaMART", verified: true },
+      { businessName: "Sai Marble & Granite", contactNumber: "+91-761-4040404", address: "Marble Market, Gorakhpur, Jabalpur - 482001", area: "Gorakhpur", areaType: "Urban", businessType: "Small Business", application: "Marble/granite transport", model: "Pro 6028", source: "Sulekha", verified: true },
+      { businessName: "Sagar Transport Solutions", contactNumber: "+91-7582-223344", address: "Tili Road, Sagar - 470002", area: "Tili Road", areaType: "Urban", businessType: "Medium Logistics", application: "FMCG, industrial goods", model: "Pro 6035", source: "Justdial", verified: true },
       { businessName: "Singrauli Mining Transport", contactNumber: "+91-7866-445566", address: "Waidhan, Singrauli - 486886", area: "Waidhan", areaType: "Urban", businessType: "Medium Logistics", application: "Mining, construction materials", model: "Pro 8035XM", source: "IndiaMART", verified: true }
     ];
 
@@ -88,9 +88,26 @@
     };
 
     const eicherModels = {
-      haulage: [{ name: "Pro 2115", application: "Marble transport, FMCG" }, { name: "Pro 3015", application: "Marble transport, FMCG" }, { name: "Pro 6025", application: "Industrial goods, cement" }, { name: "Pro 3015 CNG", application: "Eco-friendly FMCG" }, { name: "Pro 6045", application: "Tanker, bulkers" }],
-      tippers: [{ name: "Pro 6015 XPT", application: "Construction, small mining" }, { name: "Pro 8035XM", application: "Heavy mining" }, { name: "Pro 6025T", application: "Medium mining" }],
-      transitMixers: [{ name: "Pro 6025TM", application: "RMC delivery" }, { name: "Pro 6035TM", application: "Large RMC projects" }]
+      haulage: [
+        { name: "Pro 2119", application: "Marble transport, FMCG" },
+        { name: "Pro 3019", application: "Marble transport, FMCG" },
+        { name: "Pro 6028", application: "Industrial goods, cement" },
+        { name: "Pro 6035", application: "Heavy haulage" },
+        { name: "Pro 6040", application: "Tanker, bulkers" },
+        { name: "Pro 6042", application: "Long haul" },
+        { name: "Pro 6048", application: "Heavy duty transport" },
+        { name: "Pro 6055", application: "Ultra heavy haulage" },
+        { name: "Pro 3019 CNG", application: "Eco-friendly FMCG" }
+      ],
+      tippers: [
+        { name: "Pro 6019 XPT", application: "Construction, small mining" },
+        { name: "Pro 8035XM", application: "Heavy mining" },
+        { name: "Pro 6025T", application: "Medium mining" }
+      ],
+      transitMixers: [
+        { name: "Pro 6025TM", application: "RMC delivery" },
+        { name: "Pro 6035TM", application: "Large RMC projects" }
+      ]
     };
 
     // App Logic
