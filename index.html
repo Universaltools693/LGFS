@@ -10,8 +10,8 @@
   <style>
     body { margin: 0; background: #1e3a8a; font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
     .container { max-width: 100%; padding: 20px; box-sizing: border-box; display: none; }
-    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1e3a8a; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); overflow: hidden; }
-    .greeting-text { font-size: 2rem; font-weight: 700; color: #2b6cb0; text-shadow: 3px 3px 6px #000; animation: pulse 2s infinite, slideIn 1s ease-out; }
+    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0a1a3d; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); overflow: hidden; }
+    .greeting-text { font-size: 2rem; font-weight: 700; color: #ffffff; text-shadow: 3px 3px 6px #000; animation: pulse 2s infinite, slideIn 1s ease-out; }
     h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 15px 0; color: #fff; border-bottom: 2px solid #2b6cb0; padding-bottom: 10px; }
     .input-group { margin: 15px 0; position: relative; }
     .input-group label { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #d1e7ff; }
@@ -43,6 +43,16 @@
   <div class="popup"><h1 class="greeting-text" id="greeting"></h1></div>
   <div id="app" class="container"></div>
   <script>
+    // Debounce function to optimize input handling
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => { clearTimeout(timeout); func(...args); };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
     // Initial Greeting Popup
     const greeting = document.getElementById('greeting');
     greeting.textContent = getAdvancedGreeting();
@@ -117,13 +127,13 @@
         `;
         const inputs = app.querySelectorAll('input');
         inputs.forEach((input, index) => {
-          input.addEventListener('input', e => {
+          input.addEventListener('input', debounce(e => {
             if (index === 0) authName = e.target.value;
             else if (index === 1) authNumber = e.target.value;
             else if (index === 2) userName = e.target.value;
             else if (index === 3) authKey = e.target.value;
             updateUI();
-          }, { passive: true });
+          }, 300), { passive: true });
         });
       }
 
