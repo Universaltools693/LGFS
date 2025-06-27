@@ -14,7 +14,7 @@ async function scrapeLeads() {
   const allLeads = [];
   for (const source of sources) {
     await page.goto(source.url, { waitUntil: 'networkidle2' });
-    await new Promise(resolve => setTimeout(resolve, Math.random() * 2000 + 1000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const leads = await page.evaluate(source => {
       const results = [];
       const items = document.querySelectorAll(source.selector);
