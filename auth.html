@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Eicher Authentication Portal">
+  <title>Eicher Authentication</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #1e3a8a; font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
+    .container { max-width: 100%; padding: 20px; box-sizing: border-box; }
+    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0a1a3d; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
+    .greeting-text { font-size: 2rem; font-weight: 700; color: #ffffff; text-shadow: 3px 3px 6px #000; animation: pulse 2s infinite, slideIn 1s ease-out; }
+    h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 15px 0; color: #fff; border-bottom: 2px solid #2b6cb0; padding-bottom: 10px; }
+    .input-group { margin: 15px 0; position: relative; }
+    .input-group label { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #d1e7ff; }
+    .input-group input { width: 100%; padding: 10px 12px 10px 40px; font-size: 1rem; border: none; border-radius: 8px; background: #2b6cb0; color: #fff; box-sizing: border-box; transition: background 0.3s; }
+    .input-group input:focus { outline: none; background: #3b82f6; }
+    .input-group i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #d1e7ff; font-size: 1.2rem; }
+    button { background: #2b6cb0; color: #fff; font-size: 1rem; font-weight: 700; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s, transform 0.2s; position: relative; overflow: hidden; }
+    button:hover { background: #3b82f6; transform: scale(1.05); }
+    button::after { content: '➔'; position: absolute; right: 10px; opacity: 0; transition: opacity 0.3s; }
+    button:hover::after { opacity: 1; }
+    .error { color: #ff4d4d; font-size: 0.9rem; margin-top: 10px; text-align: center; font-style: italic; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes slideIn { 0% { transform: translateY(-20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; display: none; } }
+  </style>
+</head>
+<body>
+  <div class="popup"><h1 class="greeting-text" id="greeting"></h1></div>
+  <div id="app" class="container"></div>
+  <script>
+    // Initial Greeting Popup
+    const greeting = document.getElementById('greeting');
+    greeting.textContent = getAdvancedGreeting();
+    setTimeout(() => document.querySelector('.popup').style.animation = 'fadeOut 0.5s ease-out forwards', 5000);
+
+    // Advanced Greeting Function
+    function getAdvancedGreeting() {
+      const hour = new Date().getHours();
+      if (hour < 12) return "🌞 Ultimate Morning Glory Awaits!";
+      if (hour < 17) return "🌿 Epic Afternoon Power Unleashed!";
+      if (hour < 20) return "🌌 Stellar Evening Vibes Activated!";
+      return "🌠 Cosmic Night Dominance Begins!";
+    }
+
+    // Login Logic
+    function renderLogin() {
+      let authName = '', authNumber = '', authKey = '', error = '';
+      const app = document.getElementById('app');
+
+      function updateUI() {
+        app.innerHTML = `
+          <h2>🔒 Need Authentication</h2>
+          <div class="input-group"><label><i class="fas fa-user"></i> Authorize Person Name</label><input type="text" value="${authName}" placeholder="Enter Name"></div>
+          <div class="input-group"><label><i class="fas fa-phone"></i> Authorize Person Mobile Number</label><input type="text" value="${authNumber}" placeholder="Enter Number"></div>
+          <div class="input-group"><label><i class="fas fa-lock"></i> Authentication Key</label><input type="password" value="${authKey}" placeholder="Enter Secret Key"></div>
+          <button onclick="handleEnter()">Enter <i class="fas fa-arrow-right"></i></button>
+          ${error ? `<p class="error"><i class="fas fa-exclamation-triangle"></i> ${error}</p>` : ''}
+        `;
+        const inputs = app.querySelectorAll('input');
+        inputs.forEach((input, index) => {
+          input.addEventListener('input', (e) => {
+            if (index === 0) authName = e.target.value;
+            else if (index === 1) authNumber = e.target.value;
+            else if (index === 2) authKey = e.target.value;
+            updateUI();
+          }, { passive: true });
+          input.addEventListener('focus', () => input.setSelectionRange(input.value.length, input.value.length), { passive: true });
+        });
+      }
+
+      function handleEnter() {
+        const SECRET_KEY = 'Happy';
+        if (authName.trim() === 'Vikas Tiwari' && authNumber.trim() === '7974123411' && authKey.trim() === SECRET_KEY) {
+          window.location.href = 'index.html'; // Redirect to main page
+        } else {
+          error = 'Invalid Credentials';
+        }
+        updateUI();
+      }
+
+      updateUI();
+      document.querySelector('.container').style.display = 'block';
+    }
+
+    // Initial Render
+    renderLogin();
+  </script>
+</body>
+</html>
