@@ -21,17 +21,12 @@ function Login({ onLogin }) {
       setError('Invalid Authorized Name or Number');
       return;
     }
-    // Simulate OTP sending (replace with TextLocal API)
-    fetch('https://api.textlocal.in/send/?apiKey=YOUR_API_KEY&numbers=7974123411&message=Your%20OTP%20is%20654321')
-      .then(() => {
-        setShowOtp(true);
-        setError('');
-      })
-      .catch(() => setError('Failed to send OTP'));
+    setShowOtp(true);
+    setError('');
   };
 
   const handleOtpSubmit = () => {
-    if (otp === '654321') { // Dummy OTP for demo
+    if (otp === '654321') {
       onLogin(userName);
     } else {
       setError('Invalid OTP');
@@ -44,45 +39,23 @@ function Login({ onLogin }) {
       <h2>Need Authentication</h2>
       <div className="input-group">
         <label>Authorize Person Name</label>
-        <input
-          type="text"
-          value={authName}
-          onChange={e => setAuthName(e.target.value)}
-          placeholder="Enter Vikas Tiwari"
-        />
+        <input type="text" value={authName} onChange={e => setAuthName(e.target.value)} placeholder="Enter Vikas Tiwari" />
       </div>
       <div className="input-group">
         <label>Authorize Person Mobile Number</label>
-        <input
-          type="text"
-          value={authNumber}
-          onChange={e => setAuthNumber(e.target.value)}
-          placeholder="Enter 7974123411"
-        />
+        <input type="text" value={authNumber} onChange={e => setAuthNumber(e.target.value)} placeholder="Enter 7974123411" />
       </div>
       <div className="input-group">
         <label>Your Name</label>
-        <input
-          type="text"
-          value={userName}
-          onChange={e => setUserName(e.target.value)}
-          placeholder="Enter Your Name"
-        />
+        <input type="text" value={userName} onChange={e => setUserName(e.target.value)} placeholder="Enter Your Name" />
       </div>
       {showOtp && (
         <div className="input-group">
           <label>Please Input Authorization Code</label>
-          <input
-            type="text"
-            value={otp}
-            onChange={e => setOtp(e.target.value)}
-            placeholder="Enter OTP"
-          />
+          <input type="text" value={otp} onChange={e => setOtp(e.target.value)} placeholder="Enter OTP" />
         </div>
       )}
-      <button className="go-button" onClick={showOtp ? handleOtpSubmit : handleGo}>
-        Go
-      </button>
+      <button className="go-button" onClick={showOtp ? handleOtpSubmit : handleGo}>Go</button>
       {error && <p className="error">{error}</p>}
     </div>
   );
