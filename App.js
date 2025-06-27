@@ -278,7 +278,7 @@ function App({ userName }) {
     XLSX.utils.sheet_add_aoa(worksheet, [[
       "Eicher Lead Generation",
       "", "", "", "", "",
-      `Generated on: ${new Date().toLocaleString()}`,
+      `Generated on: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`,
     ]], { origin: "A1" });
     XLSX.writeFile(workbook, "Eicher_Leads.xlsx");
   };
@@ -289,7 +289,7 @@ function App({ userName }) {
     doc.setFontSize(20);
     doc.text("Eicher Lead Generation", 20, 20);
     doc.setFontSize(12);
-    doc.text(`Generated on: ${new Date().toLocaleString()}`, 20, 30);
+    doc.text(`Generated on: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`, 20, 30);
     doc.setFontSize(10);
     doc.setFont("Helvetica", "normal");
     const tableData = filteredLeads.map(lead => [
