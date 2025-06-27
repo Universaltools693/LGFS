@@ -5,53 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Eicher Lead Generation for Madhya Pradesh Trucking Businesses">
   <title>Eicher Lead Generation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; background: #1e3a8a; font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
-    .container { max-width: 100%; padding: 10px; box-sizing: border-box; display: none; }
-    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #2b6cb0; border: 2px solid #fff; padding: 20px; border-radius: 8px; text-align: center; animation: fadeIn 0.3s ease-in, fadeOut 0.3s ease-out 4s forwards; z-index: 1000; }
-    h1 { font-size: 1.2rem; font-weight: 700; margin: 0; }
-    h2 { font-size: 1.2rem; font-weight: 700; text-align: center; margin: 10px 0; }
-    .input-group { margin: 10px 0; }
-    .input-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; }
-    .input-group input, .input-group select { width: 100%; padding: 8px; font-size: 0.9rem; border: none; border-radius: 4px; background: #2b6cb0; color: #fff; }
+    .container { max-width: 100%; padding: 20px; box-sizing: border-box; display: none; }
+    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1e3a8a; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); overflow: hidden; }
+    .greeting-text { font-size: 2rem; font-weight: 700; color: #2b6cb0; text-shadow: 3px 3px 6px #000; animation: pulse 2s infinite, slideIn 1s ease-out; }
+    h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 15px 0; color: #fff; border-bottom: 2px solid #2b6cb0; padding-bottom: 10px; }
+    .input-group { margin: 15px 0; position: relative; }
+    .input-group label { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #d1e7ff; }
+    .input-group input, .input-group select { width: 100%; padding: 10px 12px 10px 40px; font-size: 1rem; border: none; border-radius: 8px; background: #2b6cb0; color: #fff; box-sizing: border-box; transition: background 0.3s; }
     .input-group input:focus, .input-group select:focus { outline: none; background: #3b82f6; }
-    button { background: #2b6cb0; color: #fff; font-size: 0.9rem; font-weight: 700; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; }
-    button:hover { background: #3b82f6; }
-    .error { color: #ff4d4d; font-size: 0.8rem; margin-top: 5px; text-align: center; }
-    .download-container { position: absolute; top: 10px; right: 10px; }
-    .download-button { background: #2b6cb0; padding: 8px 15px; }
-    .download-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #2b6cb0; border-radius: 4px; }
+    .input-group i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #d1e7ff; font-size: 1.2rem; }
+    button { background: #2b6cb0; color: #fff; font-size: 1rem; font-weight: 700; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s, transform 0.2s; position: relative; overflow: hidden; }
+    button:hover { background: #3b82f6; transform: scale(1.05); }
+    button::after { content: '➔'; position: absolute; right: 10px; opacity: 0; transition: opacity 0.3s; }
+    button:hover::after { opacity: 1; }
+    .error { color: #ff4d4d; font-size: 0.9rem; margin-top: 10px; text-align: center; font-style: italic; }
+    .download-container { position: absolute; top: 20px; right: 20px; }
+    .download-button { background: #2b6cb0; padding: 10px 20px; border-radius: 8px; }
+    .download-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #2b6cb0; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
     .download-container:hover .download-dropdown { display: block; }
-    .download-dropdown button { width: 100%; text-align: left; padding: 8px; }
-    table { width: 100%; border-collapse: collapse; margin: 10px 0; background: #2b6cb0; }
-    th, td { border: 1px solid #fff; padding: 8px; text-align: left; }
-    th { background: #1e3a8a; }
-    @media (min-width: 768px) { h1, h2 { font-size: 1.5rem; } .input-group input, .input-group select { font-size: 1rem; } button { font-size: 1rem; padding: 10px 20px; } .popup { padding: 30px; } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .download-dropdown button { width: 100%; text-align: left; padding: 10px 20px; border-radius: 0; background: #2b6cb0; }
+    .download-dropdown button:hover { background: #3b82f6; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #2b6cb0; border-radius: 10px; overflow: hidden; }
+    th, td { border: 2px solid #fff; padding: 12px; text-align: left; }
+    th { background: #1e3a8a; font-size: 1.1rem; }
+    td { font-size: 0.95rem; }
+    @media (min-width: 768px) { .greeting-text { font-size: 2.5rem; } h2 { font-size: 1.8rem; } .input-group input, .input-group select { font-size: 1.2rem; } button { font-size: 1.2rem; padding: 15px 30px; } .popup { padding: 40px; } .container { padding: 30px; } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes slideIn { 0% { transform: translateY(-20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
     @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; display: none; } }
   </style>
 </head>
 <body>
-  <div class="popup"><h1 id="greeting"></h1></div>
+  <div class="popup"><h1 class="greeting-text" id="greeting"></h1></div>
   <div id="app" class="container"></div>
   <script>
     // Initial Greeting Popup
     const greeting = document.getElementById('greeting');
-    greeting.textContent = getGreeting();
-    setTimeout(() => document.querySelector('.popup').style.display = 'none', 4000);
+    greeting.textContent = getAdvancedGreeting();
+    setTimeout(() => document.querySelector('.popup').style.animation = 'fadeOut 0.5s ease-out forwards', 5000);
 
     // Login State
     let isAuthenticated = false;
     let userName = '';
 
-    // Greeting Function
-    function getGreeting() {
+    // Advanced Greeting Function
+    function getAdvancedGreeting() {
       const hour = new Date().getHours();
-      if (hour < 12) return "Good Morning";
-      if (hour < 17) return "Good Afternoon";
-      if (hour < 20) return "Good Evening";
-      return "Good Night";
+      if (hour < 12) return "🌞 Ultimate Morning Glory Awaits!";
+      if (hour < 17) return "🌿 Epic Afternoon Power Unleashed!";
+      if (hour < 20) return "🌌 Stellar Evening Vibes Activated!";
+      return "🌠 Cosmic Night Dominance Begins!";
     }
 
     // Sample Leads Data
@@ -100,18 +107,24 @@
 
       function updateUI() {
         app.innerHTML = `
-          <h2>Need Authentication</h2>
-          <div class="input-group"><label>Authorize Person Name</label><input type="text" value="${authName}" placeholder=""></div>
-          <div class="input-group"><label>Authorize Person Mobile Number</label><input type="text" value="${authNumber}" placeholder=""></div>
-          <div class="input-group"><label>Your Name</label><input type="text" value="${userName}" placeholder=""></div>
-          <div class="input-group"><label>Authentication Key</label><input type="password" value="${authKey}" placeholder=""></div>
-          <button onclick="handleEnter()">Enter</button>
-          ${error ? `<p class="error">${error}</p>` : ''}
+          <h2>🔒 Need Authentication</h2>
+          <div class="input-group"><label><i class="fas fa-user"></i> Authorize Person Name</label><input type="text" value="${authName}" placeholder="Enter Name"></div>
+          <div class="input-group"><label><i class="fas fa-phone"></i> Authorize Person Mobile Number</label><input type="text" value="${authNumber}" placeholder="Enter Number"></div>
+          <div class="input-group"><label><i class="fas fa-user-tie"></i> Your Name</label><input type="text" value="${userName}" placeholder="Enter Your Name"></div>
+          <div class="input-group"><label><i class="fas fa-lock"></i> Authentication Key</label><input type="password" value="${authKey}" placeholder="Enter Secret Key"></div>
+          <button onclick="handleEnter()">Enter <i class="fas fa-arrow-right"></i></button>
+          ${error ? `<p class="error"><i class="fas fa-exclamation-triangle"></i> ${error}</p>` : ''}
         `;
-        app.querySelectorAll('input')[0].addEventListener('input', e => { authName = e.target.value; updateUI(); });
-        app.querySelectorAll('input')[1].addEventListener('input', e => { authNumber = e.target.value; updateUI(); });
-        app.querySelectorAll('input')[2].addEventListener('input', e => { userName = e.target.value; updateUI(); });
-        app.querySelectorAll('input')[3].addEventListener('input', e => { authKey = e.target.value; updateUI(); });
+        const inputs = app.querySelectorAll('input');
+        inputs.forEach((input, index) => {
+          input.addEventListener('input', e => {
+            if (index === 0) authName = e.target.value;
+            else if (index === 1) authNumber = e.target.value;
+            else if (index === 2) userName = e.target.value;
+            else if (index === 3) authKey = e.target.value;
+            updateUI();
+          }, { passive: true });
+        });
       }
 
       function handleEnter() {
@@ -136,17 +149,17 @@
 
       function updateUI() {
         app.innerHTML = `
-          <h2>Eicher Lead Generation</h2>
-          ${showDownload ? '<div class="download-container"><button class="download-button">Download</button><div class="download-dropdown"><button onclick="downloadExcel()">Download in Excel File</button><button onclick="downloadPDF()">Download in PDF File</button></div></div>' : ''}
-          <div class="input-group"><label>Country: </label><input type="text" value="India" disabled></div>
-          <div class="input-group"><label>State: </label><input type="text" value="Madhya Pradesh" disabled></div>
-          <div class="input-group"><label>City: </label><select onchange="selectedCity=this.value; selectedArea=''; updateUI()"><option value="">Select City</option>${geoData.cities.map(c => `<option value="${c.name}">${c.name}</option>`).join('')}</select></div>
-          <div class="input-group"><label>Area: </label><select onchange="selectedArea=this.value" disabled=${!selectedCity}><option value="">Select Area</option>${selectedCity ? geoData.cities.find(c => c.name === selectedCity).areas.map(a => `<option value="${a.name}">${a.name}</option>`).join('') : ''}</select></div>
-          <div class="input-group"><label>Type: </label><select onchange="selectedType=this.value"><option value="">Select Type</option><option value="Urban">Urban</option><option value="Rural">Rural</option></select></div>
-          <div class="input-group"><label>Category: </label><select onchange="selectedCategory=this.value; selectedModel=''; updateUI()"><option value="">Select Category</option><option value="haulage">Haulage Trucks</option><option value="tippers">Tippers</option><option value="transitMixers">Transit Mixers</option></select></div>
-          <div class="input-group"><label>Model: </label><select onchange="selectedModel=this.value" disabled=${!selectedCategory}><option value="">Select Model</option>${selectedCategory ? eicherModels[selectedCategory].map(m => `<option value="${m.name}">${m.name}</option>`).join('') : ''}</select></div>
-          <button onclick="handleGenerateLeads()">Generate Leads</button>
-          <div><h3>Leads</h3>${filteredLeads.length === 0 ? '<p>No leads found. Please select valid options.</p>' : `<table><thead><tr><th>Business Name</th><th>Contact Number</th><th>Address</th><th>Area</th><th>Business Type</th><th>Application</th><th>Source</th></tr></thead><tbody>${filteredLeads.map(l => `<tr><td>${l.businessName}</td><td>${l.contactNumber}</td><td>${l.address}</td><td>${l.area}</td><td>${l.businessType}</td><td>${l.application}</td><td>${l.source}</td></tr>`).join('')}</tbody></table>`}</div>
+          <h2>🚛 Eicher Lead Generation</h2>
+          ${showDownload ? '<div class="download-container"><button class="download-button">Download <i class="fas fa-download"></i></button><div class="download-dropdown"><button onclick="downloadExcel()">📊 Excel File</button><button onclick="downloadPDF()">📄 PDF File</button></div></div>' : ''}
+          <div class="input-group"><label><i class="fas fa-globe"></i> Country:</label><input type="text" value="India" disabled></div>
+          <div class="input-group"><label><i class="fas fa-map-marked-alt"></i> State:</label><input type="text" value="Madhya Pradesh" disabled></div>
+          <div class="input-group"><label><i class="fas fa-city"></i> City:</label><select onchange="selectedCity=this.value; selectedArea=''; updateUI()"><option value="">Select City</option>${geoData.cities.map(c => `<option value="${c.name}">${c.name}</option>`).join('')}</select></div>
+          <div class="input-group"><label><i class="fas fa-map-pin"></i> Area:</label><select onchange="selectedArea=this.value" disabled=${!selectedCity}><option value="">Select Area</option>${selectedCity ? geoData.cities.find(c => c.name === selectedCity).areas.map(a => `<option value="${a.name}">${a.name}</option>`).join('') : ''}</select></div>
+          <div class="input-group"><label><i class="fas fa-layer-group"></i> Type:</label><select onchange="selectedType=this.value"><option value="">Select Type</option><option value="Urban">Urban</option><option value="Rural">Rural</option></select></div>
+          <div class="input-group"><label><i class="fas fa-truck"></i> Category:</label><select onchange="selectedCategory=this.value; selectedModel=''; updateUI()"><option value="">Select Category</option><option value="haulage">Haulage Trucks</option><option value="tippers">Tippers</option><option value="transitMixers">Transit Mixers</option></select></div>
+          <div class="input-group"><label><i class="fas fa-cog"></i> Model:</label><select onchange="selectedModel=this.value" disabled=${!selectedCategory}><option value="">Select Model</option>${selectedCategory ? eicherModels[selectedCategory].map(m => `<option value="${m.name}">${m.name}</option>`).join('') : ''}</select></div>
+          <button onclick="handleGenerateLeads()">Generate Leads <i class="fas fa-check"></i></button>
+          <div><h3>📋 Leads</h3>${filteredLeads.length === 0 ? '<p><i class="fas fa-info-circle"></i> No leads found. Please select valid options.</p>' : `<table><thead><tr><th>📌 Business Name</th><th>📞 Contact Number</th><th>🏠 Address</th><th>📍 Area</th><th>🏭 Business Type</th><th>🚚 Application</th><th>🌐 Source</th></tr></thead><tbody>${filteredLeads.map(l => `<tr><td>${l.businessName}</td><td>${l.contactNumber}</td><td>${l.address}</td><td>${l.area}</td><td>${l.businessType}</td><td>${l.application}</td><td>${l.source}</td></tr>`).join('')}</tbody></table>`}</div>
         `;
       }
 
