@@ -8,8 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; background: #1e3a8a; font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
-    .container { max-width: 100%; padding: 10px; box-sizing: border-box; }
-    h1 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 10px 0; }
+    .container { max-width: 100%; padding: 10px; box-sizing: border-box; display: none; }
+    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #2b6cb0; border: 2px solid #fff; padding: 20px; border-radius: 8px; text-align: center; animation: fadeIn 0.3s ease-in, fadeOut 0.3s ease-out 4s forwards; z-index: 1000; }
+    h1 { font-size: 1.2rem; font-weight: 700; margin: 0; }
     h2 { font-size: 1.2rem; font-weight: 700; text-align: center; margin: 10px 0; }
     .input-group { margin: 10px 0; }
     .input-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; }
@@ -26,12 +27,20 @@
     table { width: 100%; border-collapse: collapse; margin: 10px 0; background: #2b6cb0; }
     th, td { border: 1px solid #fff; padding: 8px; text-align: left; }
     th { background: #1e3a8a; }
-    @media (min-width: 768px) { h1 { font-size: 2rem; } h2 { font-size: 1.5rem; } .input-group input, .input-group select { font-size: 1rem; } button { font-size: 1rem; padding: 10px 20px; } }
+    @media (min-width: 768px) { h1, h2 { font-size: 1.5rem; } .input-group input, .input-group select { font-size: 1rem; } button { font-size: 1rem; padding: 10px 20px; } .popup { padding: 30px; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; display: none; } }
   </style>
 </head>
 <body>
+  <div class="popup"><h1 id="greeting"></h1></div>
   <div id="app" class="container"></div>
   <script>
+    // Initial Greeting Popup
+    const greeting = document.getElementById('greeting');
+    greeting.textContent = getGreeting();
+    setTimeout(() => document.querySelector('.popup').style.display = 'none', 4000);
+
     // Login State
     let isAuthenticated = false;
     let userName = '';
@@ -81,52 +90,43 @@
       transitMixers: [{ name: "Pro 6028TM", application: "RMC delivery" }, { name: "Pro 6035TM", application: "Large RMC projects" }]
     };
 
+    // Secret Key (Hidden)
+    const SECRET_KEY = 'Happy'; // This will be hidden from UI
+
     // Login Logic
     function renderLogin() {
-      let authName = '', authNumber = '', userName = '', otp = '', showOtp = false, error = '';
+      let authName = '', authNumber = '', userName = '', authKey = '', error = '';
       const app = document.getElementById('app');
 
       function updateUI() {
         app.innerHTML = `
-          <h1>${getGreeting()}</h1>
           <h2>Need Authentication</h2>
-          <div class="input-group"><label>Authorize Person Name</label><input type="text" value="${authName}" placeholder="Enter Vikas Tiwari"></div>
-          <div class="input-group"><label>Authorize Person Mobile Number</label><input type="text" value="${authNumber}" placeholder="Enter 7974123411"></div>
-          <div class="input-group"><label>Your Name</label><input type="text" value="${userName}" placeholder="Enter Your Name"></div>
-          ${showOtp ? '<div class="input-group"><label>Please Input Authorization Code</label><input type="text" value="' + otp + '" placeholder="Enter OTP"></div>' : ''}
-          <button onclick="handleGo()">Go</button>
+          <div class="input-group"><label>Authorize Person Name</label><input type="text" value="${authName}" placeholder=""></div>
+          <div class="input-group"><label>Authorize Person Mobile Number</label><input type="text" value="${authNumber}" placeholder=""></div>
+          <div class="input-group"><label>Your Name</label><input type="text" value="${userName}" placeholder=""></div>
+          <div class="input-group"><label>Authentication Key</label><input type="password" value="${authKey}" placeholder=""></div>
+          <button onclick="handleEnter()">Enter</button>
           ${error ? `<p class="error">${error}</p>` : ''}
         `;
-        if (!showOtp) {
-          app.querySelectorAll('input')[0].addEventListener('input', e => authName = e.target.value);
-          app.querySelectorAll('input')[1].addEventListener('input', e => authNumber = e.target.value);
-          app.querySelectorAll('input')[2].addEventListener('input', e => userName = e.target.value);
-        } else {
-          app.querySelector('input').addEventListener('input', e => otp = e.target.value);
-        }
+        app.querySelectorAll('input')[0].addEventListener('input', e => { authName = e.target.value; updateUI(); });
+        app.querySelectorAll('input')[1].addEventListener('input', e => { authNumber = e.target.value; updateUI(); });
+        app.querySelectorAll('input')[2].addEventListener('input', e => { userName = e.target.value; updateUI(); });
+        app.querySelectorAll('input')[3].addEventListener('input', e => { authKey = e.target.value; updateUI(); });
       }
 
-      function handleGo() {
-        if (!showOtp) {
-          if (authName !== 'Vikas Tiwari' || authNumber !== '7974123411') {
-            error = 'Invalid Authorized Name or Number';
-          } else {
-            showOtp = true;
-            error = '';
-          }
+      function handleEnter() {
+        if (authName !== 'Vikas Tiwari' || authNumber !== '7974123411' || authKey !== SECRET_KEY) {
+          error = 'Invalid Credentials';
         } else {
-          if (otp === '654321') {
-            isAuthenticated = true;
-            userName = userName || 'User';
-            renderApp();
-          } else {
-            error = 'Invalid OTP';
-          }
+          isAuthenticated = true;
+          userName = userName || 'User';
+          renderApp();
         }
         updateUI();
       }
 
       updateUI();
+      document.querySelector('.container').style.display = 'block';
     }
 
     // App Logic
@@ -136,7 +136,6 @@
 
       function updateUI() {
         app.innerHTML = `
-          <h1>${getGreeting()}, ${userName}</h1>
           <h2>Eicher Lead Generation</h2>
           ${showDownload ? '<div class="download-container"><button class="download-button">Download</button><div class="download-dropdown"><button onclick="downloadExcel()">Download in Excel File</button><button onclick="downloadPDF()">Download in PDF File</button></div></div>' : ''}
           <div class="input-group"><label>Country: </label><input type="text" value="India" disabled></div>
