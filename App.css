@@ -1,213 +1,27 @@
-/* Ultra extreme high-class UI */
-body {
-  margin: 0;
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-  font-family: 'Montserrat', sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* Login Dashboard */
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: #1e40af;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.greeting {
-  font-size: 4rem;
-  font-weight: 900;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  animation: glow 2s ease-in-out infinite alternate;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-}
-
-.input-group {
-  margin: 15px 0;
-  width: 300px;
-}
-
-.input-group label {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 5px;
-}
-
-.input-group input, .input-group select {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
-.input-group input:focus, .input-group select:focus {
-  outline: none;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
-}
-
-.go-button, .generate-button {
-  background: #1e3a8a;
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 700;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-transform: uppercase;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
-  transition: all 0.3s ease;
-}
-
-.go-button:hover, .generate-button:hover {
-  background: #3b82f6;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 1);
-  transform: scale(1.05);
-}
-
-.error {
-  color: #ff4d4d;
-  font-size: 1rem;
-  margin-top: 10px;
-}
-
-/* Main App */
-.App {
-  padding: 40px;
-  text-align: center;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.App h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-}
-
-.App h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-top: 30px;
-}
-
-/* Download Button */
-.download-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: inline-block;
-}
-
-.download-button {
-  background: #1e3a8a;
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 700;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-transform: uppercase;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
-  transition: all 0.3s ease;
-}
-
-.download-button:hover {
-  background: #3b82f6;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 1);
-}
-
-.download-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: #1e40af;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
-.download-container:hover .download-dropdown {
-  display: block;
-}
-
-.download-dropdown button {
-  display: block;
-  width: 100%;
-  padding: 10px 20px;
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1rem;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.download-dropdown button:hover {
-  background: #3b82f6;
-}
-
-table {
-  border-collapse: collapse;
-  width: 90%;
-  margin: 30px auto;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-th, td {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 15px;
-  text-align: left;
-  color: #ffffff;
-}
-
-th {
-  background: #1e40af;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-p {
-  color: #ff4d4d;
-  font-size: 1.2rem;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-  to { text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
-}
+body { margin: 0; background: linear-gradient(135deg, #1e3a8a, #3b82f6); font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
+.login-container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #1e40af; animation: fadeIn 1s ease-in-out; }
+.greeting { font-size: 4rem; font-weight: 900; color: #ffffff; text-transform: uppercase; text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); animation: glow 2s ease-in-out infinite alternate; text-align: center; margin-bottom: 20px; }
+h2 { font-size: 2.5rem; font-weight: 700; color: #ffffff; text-transform: uppercase; margin-bottom: 30px; }
+.input-group { margin: 15px 0; width: 300px; }
+.input-group label { display: block; font-size: 1.2rem; font-weight: 600; color: #ffffff; margin-bottom: 5px; }
+.input-group input, .input-group select { width: 100%; padding: 12px; font-size: 1rem; border: none; border-radius: 8px; background: rgba(255, 255, 255, 0.1); color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; }
+.input-group input:focus, .input-group select:focus { outline: none; box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
+.go-button, .generate-button { background: #1e3a8a; color: #ffffff; font-size: 1.2rem; font-weight: 700; padding: 12px 30px; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); transition: all 0.3s ease; }
+.go-button:hover, .generate-button:hover { background: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 1); transform: scale(1.05); }
+.error { color: #ff4d4d; font-size: 1rem; margin-top: 10px; }
+.App { padding: 40px; text-align: center; animation: fadeIn 1s ease-in-out; }
+.App h2 { font-size: 2rem; font-weight: 700; color: #ffffff; text-transform: uppercase; margin-bottom: 30px; }
+.App h3 { font-size: 1.5rem; font-weight: 600; color: #ffffff; margin-top: 30px; }
+.download-container { position: absolute; top: 20px; right: 20px; display: inline-block; }
+.download-button { background: #1e3a8a; color: #ffffff; font-size: 1.2rem; font-weight: 700; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); transition: all 0.3s ease; }
+.download-button:hover { background: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 1); }
+.download-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #1e40af; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); z-index: 1; }
+.download-container:hover .download-dropdown { display: block; }
+.download-dropdown button { display: block; width: 100%; padding: 10px 20px; background: none; border: none; color: #ffffff; font-size: 1rem; text-align: left; cursor: pointer; transition: all 0.3s ease; }
+.download-dropdown button:hover { background: #3b82f6; }
+table { border-collapse: collapse; width: 90%; margin: 30px auto; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
+th, td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; color: #ffffff; }
+th { background: #1e40af; font-weight: 700; text-transform: uppercase; }
+p { color: #ff4d4d; font-size: 1.2rem; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes glow { from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); } to { text-shadow: 0 0 20px rgba(255, 255, 255, 1); } }
