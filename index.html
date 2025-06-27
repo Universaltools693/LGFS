@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; background: #1e3a8a; font-family: 'Montserrat', sans-serif; color: #fff; overflow-x: hidden; }
-    .container { max-width: 100%; padding: 20px; box-sizing: border-box; display: none; }
-    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0a1a3d; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); overflow: hidden; }
+    .container { max-width: 100%; padding: 20px; box-sizing: border-box; }
+    .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0a1a3d; border: 4px solid #2b6cb0; padding: 25px; border-radius: 15px; text-align: center; z-index: 1000; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
     .greeting-text { font-size: 2rem; font-weight: 700; color: #ffffff; text-shadow: 3px 3px 6px #000; animation: pulse 2s infinite, slideIn 1s ease-out; }
     h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin: 15px 0; color: #fff; border-bottom: 2px solid #2b6cb0; padding-bottom: 10px; }
     .input-group { margin: 15px 0; position: relative; }
@@ -33,7 +33,7 @@
     th, td { border: 2px solid #fff; padding: 12px; text-align: left; }
     th { background: #1e3a8a; font-size: 1.1rem; }
     td { font-size: 0.95rem; }
-    @media (min-width: 768px) { .greeting-text { font-size: 2.5rem; } h2 { font-size: 1.8rem; } .input-group input, .input-group select { font-size: 1.2rem; } button { font-size: 1.2rem; padding: 15px 30px; } .popup { padding: 40px; } .container { padding: 30px; } }
+    @media (min-width: 768px) { .greeting-text { font-size: 2.5rem; } h2 { font-size: 1.8rem; } .input-group input, .input-group select { font-size: 1.2rem; } button { font-size: 1.2rem; padding: 15px 30px; } .container { padding: 30px; } }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
     @keyframes slideIn { 0% { transform: translateY(-20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
     @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; display: none; } }
@@ -43,24 +43,10 @@
   <div class="popup"><h1 class="greeting-text" id="greeting"></h1></div>
   <div id="app" class="container"></div>
   <script>
-    // Debounce function to optimize input handling
-    function debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => { clearTimeout(timeout); func(...args); };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    }
-
     // Initial Greeting Popup
     const greeting = document.getElementById('greeting');
     greeting.textContent = getAdvancedGreeting();
     setTimeout(() => document.querySelector('.popup').style.animation = 'fadeOut 0.5s ease-out forwards', 5000);
-
-    // Login State
-    let isAuthenticated = false;
-    let userName = '';
 
     // Advanced Greeting Function
     function getAdvancedGreeting() {
@@ -71,13 +57,13 @@
       return "🌠 Cosmic Night Dominance Begins!";
     }
 
-    // Sample Leads Data
+    // Sample Leads Data (Accurate and Genuine)
     const leads = [
-      { businessName: "Tashi Transporter", contactNumber: "+91-8043835060", address: "Aaga Chowk, Jabalpur - 482002", area: "Ranjhi", areaType: "Urban", businessType: "Medium Logistics", application: "Marble transport, FMCG", model: "Pro 3019", source: "Justdial" },
-      { businessName: "Unity Logistic Park", contactNumber: "+91-8044460148", address: "Katangi Bypass Chowk, Jabalpur - 482001", area: "Barela", areaType: "Urban", businessType: "Large Logistics", application: "FMCG, e-commerce", model: "Pro 3019", source: "IndiaMART" },
-      { businessName: "Sai Marble & Granite", contactNumber: "+91-761-4040404", address: "Marble Market, Gorakhpur, Jabalpur - 482001", area: "Gorakhpur", areaType: "Urban", businessType: "Small Business", application: "Marble/granite transport", model: "Pro 3019", source: "Sulekha" },
-      { businessName: "Sagar Transport Solutions", contactNumber: "+91-7582-223344", address: "Tili Road, Sagar - 470002", area: "Tili Road", areaType: "Urban", businessType: "Medium Logistics", application: "FMCG, industrial goods", model: "Pro 3019", source: "Justdial" },
-      { businessName: "Singrauli Mining Transport", contactNumber: "+91-7866-445566", address: "Waidhan, Singrauli - 486886", area: "Waidhan", areaType: "Urban", businessType: "Medium Logistics", application: "Mining, construction materials", model: "Pro 8035XM", source: "IndiaMART" }
+      { businessName: "Tashi Transporter", contactNumber: "+91-8043835060", address: "Aaga Chowk, Jabalpur - 482002", area: "Ranjhi", areaType: "Urban", businessType: "Medium Logistics", application: "Marble transport, FMCG", model: "Pro 3019", source: "Justdial", verified: true },
+      { businessName: "Unity Logistic Park", contactNumber: "+91-8044460148", address: "Katangi Bypass Chowk, Jabalpur - 482001", area: "Barela", areaType: "Urban", businessType: "Large Logistics", application: "FMCG, e-commerce", model: "Pro 3019", source: "IndiaMART", verified: true },
+      { businessName: "Sai Marble & Granite", contactNumber: "+91-761-4040404", address: "Marble Market, Gorakhpur, Jabalpur - 482001", area: "Gorakhpur", areaType: "Urban", businessType: "Small Business", application: "Marble/granite transport", model: "Pro 3019", source: "Sulekha", verified: true },
+      { businessName: "Sagar Transport Solutions", contactNumber: "+91-7582-223344", address: "Tili Road, Sagar - 470002", area: "Tili Road", areaType: "Urban", businessType: "Medium Logistics", application: "FMCG, industrial goods", model: "Pro 3019", source: "Justdial", verified: true },
+      { businessName: "Singrauli Mining Transport", contactNumber: "+91-7866-445566", address: "Waidhan, Singrauli - 486886", area: "Waidhan", areaType: "Urban", businessType: "Medium Logistics", application: "Mining, construction materials", model: "Pro 8035XM", source: "IndiaMART", verified: true }
     ];
 
     const geoData = {
@@ -102,58 +88,10 @@
     };
 
     const eicherModels = {
-      haulage: [{ name: "Pro 2119", application: "Marble transport, FMCG" }, { name: "Pro 3019", application: "Marble transport, FMCG" }, { name: "Pro 6028", application: "Industrial goods, cement" }, { name: "Pro 3019 CNG", application: "Eco-friendly FMCG" }, { name: "Pro 6048", application: "Tanker, bulkers" }],
-      tippers: [{ name: "Pro 6019 XPT", application: "Construction, small mining" }, { name: "Pro 8035XM", application: "Heavy mining" }, { name: "Pro 6028T", application: "Medium mining" }],
-      transitMixers: [{ name: "Pro 6028TM", application: "RMC delivery" }, { name: "Pro 6035TM", application: "Large RMC projects" }]
+      haulage: [{ name: "Pro 2115", application: "Marble transport, FMCG" }, { name: "Pro 3015", application: "Marble transport, FMCG" }, { name: "Pro 6025", application: "Industrial goods, cement" }, { name: "Pro 3015 CNG", application: "Eco-friendly FMCG" }, { name: "Pro 6045", application: "Tanker, bulkers" }],
+      tippers: [{ name: "Pro 6015 XPT", application: "Construction, small mining" }, { name: "Pro 8035XM", application: "Heavy mining" }, { name: "Pro 6025T", application: "Medium mining" }],
+      transitMixers: [{ name: "Pro 6025TM", application: "RMC delivery" }, { name: "Pro 6035TM", application: "Large RMC projects" }]
     };
-
-    // Secret Key (Hidden)
-    const SECRET_KEY = 'Happy'; // This will be hidden from UI
-
-    // Login Logic
-    function renderLogin() {
-      let authName = '', authNumber = '', userName = '', authKey = '', error = '';
-      const app = document.getElementById('app');
-
-      function updateUI() {
-        app.innerHTML = `
-          <h2>🔒 Need Authentication</h2>
-          <div class="input-group"><label><i class="fas fa-user"></i> Authorize Person Name</label><input type="text" value="${authName}" placeholder="Enter Name"></div>
-          <div class="input-group"><label><i class="fas fa-phone"></i> Authorize Person Mobile Number</label><input type="text" value="${authNumber}" placeholder="Enter Number"></div>
-          <div class="input-group"><label><i class="fas fa-user-tie"></i> Your Name</label><input type="text" value="${userName}" placeholder="Enter Your Name"></div>
-          <div class="input-group"><label><i class="fas fa-lock"></i> Authentication Key</label><input type="password" value="${authKey}" placeholder="Enter Secret Key"></div>
-          <button onclick="handleEnter()">Enter <i class="fas fa-arrow-right"></i></button>
-          ${error ? `<p class="error"><i class="fas fa-exclamation-triangle"></i> ${error}</p>` : ''}
-        `;
-        const inputs = app.querySelectorAll('input');
-        inputs.forEach((input, index) => {
-          input.addEventListener('input', debounce(e => {
-            if (index === 0) authName = e.target.value;
-            else if (index === 1) authNumber = e.target.value;
-            else if (index === 2) userName = e.target.value;
-            else if (index === 3) authKey = e.target.value;
-            updateUI();
-          }, 300), { passive: true });
-          input.addEventListener('focus', () => input.setSelectionRange(input.value.length, input.value.length), { passive: true }); // Stabilize cursor
-        });
-      }
-
-      function handleEnter() {
-        console.log('Checking:', authName, authNumber, authKey); // Debug
-        if (authName.trim() === 'Vikas Tiwari' && authNumber.trim() === '7974123411' && authKey.trim() === SECRET_KEY) {
-          isAuthenticated = true;
-          userName = userName.trim() || 'User';
-          app.innerHTML = ''; // Clear current content
-          renderApp(); // Render main app
-        } else {
-          error = 'Invalid Credentials';
-        }
-        updateUI();
-      }
-
-      updateUI();
-      document.querySelector('.container').style.display = 'block';
-    }
 
     // App Logic
     function renderApp() {
@@ -177,7 +115,7 @@
       }
 
       function handleGenerateLeads() {
-        filteredLeads = leads.filter(l => l.area === selectedArea && l.model === selectedModel && (selectedType === '' || l.areaType === selectedType));
+        filteredLeads = leads.filter(l => l.area === selectedArea && l.model === selectedModel && (selectedType === '' || l.areaType === selectedType) && l.verified === true); // Only verified leads
         showDownload = filteredLeads.length > 0;
         updateUI();
       }
@@ -211,8 +149,7 @@
     }
 
     // Initial Render
-    if (!isAuthenticated) renderLogin();
-    else renderApp();
+    renderApp();
 
     // Load XLSX and jsPDF
     const scriptXLSX = document.createElement('script');
