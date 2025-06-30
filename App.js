@@ -17,7 +17,6 @@ const App = () => {
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   const [greeting, setGreeting] = useState('');
 
-  // Time-based greeting (updated for 11:27 PM IST, June 30, 2025)
   useEffect(() => {
     const hour = new Date().getHours();
     if (hour >= 0 && hour < 6) setGreeting('Good Night');
@@ -27,7 +26,6 @@ const App = () => {
     setTimeout(() => document.getElementById('greeting').style.display = 'none', 4000);
   }, []);
 
-  // Show greeting after authentication
   useEffect(() => {
     if (isAuthenticated) {
       setTimeout(() => {
@@ -37,7 +35,6 @@ const App = () => {
     }
   }, [isAuthenticated]);
 
-  // Fetch areas
   useEffect(() => {
     if (district && areaType) {
       axios.get(`https://your-render-url.com/api/areas?district=${district}&type=${areaType}`)
@@ -46,7 +43,6 @@ const App = () => {
     }
   }, [district, areaType]);
 
-  // Fetch models
   useEffect(() => {
     if (vehicleType) {
       axios.get(`https://your-render-url.com/api/models?type=${vehicleType}`)
@@ -55,14 +51,12 @@ const App = () => {
     }
   }, [vehicleType]);
 
-  // Authenticate
   const authenticate = () => {
     if (key === 'HAPPY') {
       setIsAuthenticated(true);
     }
   };
 
-  // Generate leads
   const generateLeads = () => {
     setIsProcessing(true);
     axios.get(`https://your-render-url.com/api/leads?district=${district}&type=${areaType}&model=${model}`)
@@ -82,7 +76,6 @@ const App = () => {
       });
   };
 
-  // Download leads (unlimited)
   const download = (format) => {
     window.location.href = `https://your-render-url.com/api/download?format=${format}&district=${district}&type=${areaType}&model=${model}`;
   };
