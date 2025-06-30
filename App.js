@@ -17,7 +17,7 @@ const App = () => {
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   const [greeting, setGreeting] = useState('');
 
-  // Time-based greeting (updated for 10:53 PM IST, June 30, 2025)
+  // Time-based greeting (updated for 11:27 PM IST, June 30, 2025)
   useEffect(() => {
     const hour = new Date().getHours();
     if (hour >= 0 && hour < 6) setGreeting('Good Night');
